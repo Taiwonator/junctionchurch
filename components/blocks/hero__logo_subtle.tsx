@@ -1,0 +1,43 @@
+
+import React from 'react';
+import type { Template } from 'tinacms';
+import { tinaField } from 'tinacms/dist/react';
+import { PageBlocksHeroSubtleLogo } from '@/tina/__generated__/types';
+import { Section, sectionBlockSchemaField } from '../layout/section';
+
+export const HeroSubtleLogo = ({ data }: { data: PageBlocksHeroSubtleLogo }) => {
+    return (
+        <Section background={data.background!}>
+            <div className="text-center">
+                <p
+                    data-tina-field={tinaField(data, 'text')}
+                    className="text-lg"
+                >
+                    {data.text}
+                </p>
+            </div>
+        </Section>
+    );
+};
+
+export const heroSubtleLogoBlockSchema: Template = {
+    name: 'hero__logo_subtle',
+    label: 'Hero (Subtle Logo)',
+    ui: {
+        previewSrc: '/blocks/placeholder.png',
+        defaultItem: {
+            text: 'This is a Hero (Subtle Logo) block',
+        },
+    },
+    fields: [
+        sectionBlockSchemaField as any,
+        {
+            type: 'string',
+            label: 'Text',
+            name: 'text',
+            ui: {
+                component: 'textarea',
+            },
+        },
+    ],
+};
