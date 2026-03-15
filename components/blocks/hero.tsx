@@ -1,16 +1,14 @@
 'use client';
-import { iconSchema } from '@/tina/fields/icon';
+import { actionsFieldSchema } from '@/tina/fields/actions';
 import Image from 'next/image';
-import Link from 'next/link';
 import * as React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
 import { PageBlocksHero, PageBlocksHeroImage } from '../../tina/__generated__/types';
-import { Icon } from '../icon';
+import { ActionRenderer } from '../ActionRenderer';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 import { AnimatedGroup } from '../motion-primitives/animated-group';
 import { TextEffect } from '../motion-primitives/text-effect';
-import { Button } from '../ui/button';
 import HeroVideoDialog from '../ui/hero-video-dialog';
 import { Transition } from 'motion/react';
 const transitionVariants = {
@@ -77,15 +75,12 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
         <AnimatedGroup variants={transitionVariants} className='mt-12 flex flex-col items-center justify-center gap-2 md:flex-row'>
           {data.actions &&
-            data.actions.map((action) => (
-              <div key={action!.label} data-tina-field={tinaField(action)} className='bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5'>
-                <Button asChild size='lg' variant={action!.type === 'link' ? 'ghost' : 'default'} className='rounded-xl px-5 text-base'>
-                  <Link href={action!.link!}>
-                    {action?.icon && <Icon data={action?.icon} />}
-                    <span className='text-nowrap'>{action!.label}</span>
-                  </Link>
-                </Button>
-              </div>
+            data.actions.map((action: any) => (
+              <ActionRenderer
+                key={action.label}
+                action={action}
+                className='bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5'
+              />
             ))}
         </AnimatedGroup>
       </div>
@@ -155,47 +150,7 @@ export const heroBlockSchema: Template = {
       label: 'Tagline',
       name: 'tagline',
     },
-    {
-      label: 'Actions',
-      name: 'actions',
-      type: 'object',
-      list: true,
-      ui: {
-        defaultItem: {
-          label: 'Action Label',
-          type: 'button',
-          icon: {
-              name: "Tina",
-              color: "white",
-              style: "float",
-          },
-          link: '/',
-        },
-        itemProps: (item) => ({ label: item.label }),
-      },
-      fields: [
-        {
-          label: 'Label',
-          name: 'label',
-          type: 'string',
-        },
-        {
-          label: 'Type',
-          name: 'type',
-          type: 'string',
-          options: [
-            { label: 'Button', value: 'button' },
-            { label: 'Link', value: 'link' },
-          ],
-        },
-        iconSchema as any,
-        {
-          label: 'Link',
-          name: 'link',
-          type: 'string',
-        },
-      ],
-    },
+    actionsFieldSchema as any,
     {
       type: 'object',
       label: 'Image',

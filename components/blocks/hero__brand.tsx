@@ -4,14 +4,14 @@ import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { PageBlocksHero__Brand } from '@/tina/__generated__/types';
-import { iconSchema } from '@/tina/fields/icon';
-import Link from 'next/link';
-import { Button } from '../ui/button';
-import { Icon } from '../icon';
+import { actionsFieldSchema } from '@/tina/fields/actions';
+import { components } from '../mdx-components';
+import { headlineRenderer } from '../primitives/hero';
+import { ActionRenderer } from '../ActionRenderer';
 
 export const HeroBrand = ({ data }: { data: PageBlocksHero__Brand }) => {
     return (
-        <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div className="relative min-h-screen flex items-center justify-center overflow-hidden" id='hero'>
             {/* Video Background */}
             {data.videoSrc && (
                 <div className="absolute inset-0 z-0">
@@ -32,46 +32,46 @@ export const HeroBrand = ({ data }: { data: PageBlocksHero__Brand }) => {
 
             {/* Content */}
             <div className="relative z-10 text-center px-6 py-12 max-w-7xl mx-auto">
-                {/* Headline */}
-                {data.headlineRich && (
-                    <div
-                        data-tina-field={tinaField(data, 'headlineRich')}
-                        className="prose prose-invert prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-6xl md:prose-headings:text-7xl xl:prose-headings:text-8xl prose-strong:text-yellow-400 max-w-none"
-                    >
-                        <TinaMarkdown content={data.headlineRich} />
+                {/* Logo */}
+                {data.logo && (
+                    <div className="flex justify-center mb-6" data-tina-field={tinaField(data, 'logo')}>
+                        <img src={data.logo} alt="" className="max-w-25 h-auto" />
                     </div>
                 )}
 
-                {/* Subtext */}
-                {data.subtextRich && (
+                {/* Headline - Transformed to single h1 with span children */}
+                {data.headlineRich && (
+                    <div data-tina-field={tinaField(data, 'headlineRich')}>
+                        {/* <TinaMarkdown content={data.headlineRich} components={{ ...components }} /> */}
+                        {headlineRenderer(data.headlineRich)}
+                    </div>
+                )}
+
+                {/* Subheadline */}
+                {data.subheadlineRich && (
                     <div
-                        data-tina-field={tinaField(data, 'subtextRich')}
-                        className="mt-6 prose prose-invert prose-p:text-white prose-p:text-lg md:prose-p:text-xl prose-strong:text-yellow-400 max-w-2xl mx-auto"
+                        data-tina-field={tinaField(data, 'subheadlineRich')}
+                        className="mt-6 prose prose-invert prose-p:text-white prose-p:text-lg md:prose-p:text-xl prose-em:text-yellow-400 prose-em:not-italic max-w-2xl mx-auto"
                     >
-                        <TinaMarkdown content={data.subtextRich} />
+                        <TinaMarkdown content={data.subheadlineRich} components={{ ...components }} />
+                    </div>
+                )}
+
+                {/* Body */}
+                {data.bodyRich && (
+                    <div
+                        data-tina-field={tinaField(data, 'bodyRich')}
+                        className="mt-4 prose prose-invert prose-p:text-white/90 prose-p:text-base md:prose-p:text-lg prose-em:text-yellow-400 prose-em:not-italic max-w-3xl mx-auto"
+                    >
+                        <TinaMarkdown content={data.bodyRich} components={{ ...components }} />
                     </div>
                 )}
 
                 {/* Action Buttons */}
                 {data.actions && data.actions.length > 0 && (
                     <div className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row">
-                        {data.actions.map((action) => (
-                            <div
-                                key={action!.label}
-                                data-tina-field={tinaField(action)}
-                            >
-                                <Button
-                                    asChild
-                                    size="lg"
-                                    variant={action!.type === 'link' ? 'ghost' : 'default'}
-                                    className="px-8 py-6 text-lg font-semibold"
-                                >
-                                    <Link href={action!.link!}>
-                                        {action?.icon && <Icon data={action?.icon} />}
-                                        <span className="text-nowrap">{action!.label}</span>
-                                    </Link>
-                                </Button>
-                            </div>
+                        {data.actions.map((action: any) => (
+                            <ActionRenderer key={action.label} action={action} />
                         ))}
                     </div>
                 )}
@@ -99,7 +99,7 @@ export const heroBrandBlockSchema: Template = {
                     },
                 ],
             },
-            subtextRich: {
+            subheadlineRich: {
                 type: 'root',
                 children: [
                     {
@@ -108,6 +108,11 @@ export const heroBrandBlockSchema: Template = {
                             { type: 'text', text: 'One Church in Three Locations' },
                         ],
                     },
+                ],
+            },
+            bodyRich: {
+                type: 'root',
+                children: [
                     {
                         type: 'p',
                         children: [
@@ -118,8 +123,9 @@ export const heroBrandBlockSchema: Template = {
             },
             actions: [
                 {
+                    _template: 'linkAction',
                     label: 'GET CONNECTED',
-                    type: 'button',
+                    variant: 'yellow',
                     link: '/',
                 },
             ],
@@ -127,16 +133,33 @@ export const heroBrandBlockSchema: Template = {
     },
     fields: [
         {
-            type: 'rich-text',
-            label: 'Headline',
-            name: 'headlineRich',
-            description: 'Use bold formatting to highlight words (they will appear in yellow)',
+            type: 'image',
+            label: 'Logo',
+            name: 'logo',
+            description: 'Logo image displayed at the top of the hero (supports SVG, PNG, JPG, etc.)',
         },
         {
             type: 'rich-text',
-            label: 'Subtext',
-            name: 'subtextRich',
+            label: 'Headline',
+            name: 'headlineRich',
+            description: 'Main hero heading - use the BOLD button (B) to highlight words (they will appear with yellow background)',
+            overrides: {
+                toolbar: ['bold', 'italic', 'link'],
+                showFloatingToolbar: false,
+            },
+        },
+        {
+            type: 'rich-text',
+            label: 'Subheadline',
+            name: 'subheadlineRich',
             description: 'Supporting text below the headline',
+        },
+        {
+            type: 'rich-text',
+            label: 'Body',
+            name: 'bodyRich',
+            isBody: true,
+            description: 'Additional descriptive text (optional)',
         },
         {
             type: 'string',
@@ -144,46 +167,6 @@ export const heroBrandBlockSchema: Template = {
             name: 'videoSrc',
             description: 'URL or path to the MP4 video file',
         },
-        {
-            label: 'Actions',
-            name: 'actions',
-            type: 'object',
-            list: true,
-            ui: {
-                defaultItem: {
-                    label: 'Action Label',
-                    type: 'button',
-                    icon: {
-                        name: "Tina",
-                        color: "white",
-                        style: "float",
-                    },
-                    link: '/',
-                },
-                itemProps: (item) => ({ label: item.label }),
-            },
-            fields: [
-                {
-                    label: 'Label',
-                    name: 'label',
-                    type: 'string',
-                },
-                {
-                    label: 'Type',
-                    name: 'type',
-                    type: 'string',
-                    options: [
-                        { label: 'Button', value: 'button' },
-                        { label: 'Link', value: 'link' },
-                    ],
-                },
-                iconSchema as any,
-                {
-                    label: 'Link',
-                    name: 'link',
-                    type: 'string',
-                },
-            ],
-        },
+        actionsFieldSchema as any,
     ],
 };

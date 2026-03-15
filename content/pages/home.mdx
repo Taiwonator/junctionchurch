@@ -1,35 +1,36 @@
 ---
 title: Tina Cloud Starter
+hide
 blocks:
-  - background: ''
-    text: Support for live editing and editorial workflow
-    url: 'https://tina.io/editorial-workflow'
-    _template: callout
-  - headlineRich: |
-      # WELCOME **HOME**.
-    subtextRich: |
-      One Church in Three Locations
+  - logo: /uploads/mcdonald-s-15-logo.svg
+    headlineRich: |
+      Welcome
 
+      **Home**
+    subheadlineRich: |
+      **One Church in Three Locations**
+    bodyRich: |
       Loughborough, Leicester, Nottingham
     videoSrc: 'https://junctionchurch.net/wp-content/uploads/2025/08/1-MINUTE-VID-1.mp4'
     actions:
       - label: GET CONNECTED
-        type: button
+        variant: purple
         link: /
+        _template: linkAction
     _template: hero__brand
   - background: bg-orange-50/80
     headline: Welcome to the TinaCloud Starter
     tagline: Build 10x Faster with TinaCMS
     actions:
       - label: Get Started
-        type: button
         icon:
           name: Tina
           color: white
         link: /about
+        _template: linkAction
       - label: Read Blog
-        type: link
         link: /posts
+        _template: linkAction
     image:
       src: ''
       alt: Getting started with TinaCMS
@@ -152,18 +153,34 @@ blocks:
       next level.
     actions:
       - label: Get Started
-        type: button
         icon:
           name: Tina
           color: white
           style: ''
-        link: /
-      - label: Book Demo
-        type: link
-        link: 'https://tina.io'
+        link: 'https://www.google.com/'
+        _template: linkAction
+      - label: Watch Vide
+        variant: outline-pink
+        size: sm
+        videoSrc: >-
+          https://junctionchurch.net/wp-content/uploads/2025/08/1-MINUTE-VID-1.mp4
+        usePlayButton: true
+        _template: videoAction
+      - label: Download
+        variant: purple
+        file: /uploads/Group 308.png
+        _template: downloadAction
+      - label: See More
+        variant: blue
+        anchor: hero
+        _template: scrollAction
     _template: cta
   - background: bg-gray-50/80
     text: This is a placeholder block
     _template: placeholder
+  - background: ''
+    text: Support for live editing and editorial workflow
+    url: 'https://tina.io/editorial-workflow'
+    _template: callout
 ---
 

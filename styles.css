@@ -1,8 +1,53 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
+
+@theme {
+  --font-display: "Oswald", sans-serif;
+
+  /* Junction Church Brand Colors */
+  --color-jc-yellow: #ffde00;
+  --color-jc-pink: #FF006E;
+  --color-jc-blue: #3AFFDC;
+  --color-jc-purple: #8338EC;
+  --color-jc-black: #000;
+  --color-jc-white: #fff;
+
+  /* Border utilities */
+  --jc-border-width: 0.2em;
+
+  /* Z-Index Scale - Semantic layering system */
+  /* Background layers (negative values - use sparingly!) */
+  --z-behind: -1;
+
+  /* Base content layers (0-10) */
+  --z-base: 0;
+  --z-content: 10;
+
+  /* UI element layers (10-30) */
+  --z-dropdown: 20;
+  --z-sticky: 20;
+  --z-overlay: 30;
+
+  /* Navigation layers (40-50) */
+  --z-header: 40;
+  --z-sidebar: 40;
+
+  /* Modal/Dialog layers (50-70) */
+  --z-modal: 50;
+  --z-popover: 60;
+  --z-tooltip: 70;
+
+  /* Critical UI (80-100) */
+  --z-notification: 80;
+  --z-toast: 90;
+  --z-debug: 100;
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -118,5 +163,320 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Oswald", sans-serif;
+  }
+
+  p,
+  span,
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    font-family: "Overpass", sans-serif;
+  }
+
+  /* Override: spans inside headings should use heading font */
+  h1 span,
+  h2 span,
+  h3 span,
+  h4 span,
+  h5 span,
+  h6 span {
+    font-family: inherit;
+  }
+}
+
+@layer utilities {
+
+  /*
+   * Z-Index Usage Guide:
+   *
+   * Use semantic z-index classes for consistent layering:
+   *
+   * - z-behind     → Background elements (videos, images)
+   * - z-base       → Base layer (default)
+   * - z-content    → Main content
+   * - z-dropdown   → Dropdowns, sticky headers
+   * - z-sticky     → Sticky elements
+   * - z-overlay    → Overlays
+   * - z-header     → Site header/navigation
+   * - z-sidebar    → Sidebar navigation
+   * - z-modal      → Modal dialogs
+   * - z-popover    → Popovers
+   * - z-tooltip    → Tooltips
+   * - z-notification → Notifications
+   * - z-toast      → Toast messages
+   * - z-debug      → Debug overlays
+   *
+   * Example: <div className="z-content">...</div>
+   */
+
+  /* Junction Church Button Base */
+  .jc-btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap;
+    @apply font-medium transition-all;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+    @apply [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4;
+    @apply shrink-0 [&_svg]:shrink-0;
+    @apply outline-none focus-visible:ring-4 focus-visible:ring-offset-2;
+    @apply uppercase tracking-wide;
+    font-family: "Oswald", sans-serif;
+  }
+
+  /* Junction Church Button Variants */
+  .jc-btn-yellow {
+    @apply bg-jc-yellow text-jc-black;
+    @apply border-[0.2em] border-jc-black;
+    @apply hover:bg-jc-yellow/90 hover:scale-[1.02];
+    @apply focus-visible:ring-jc-yellow/50;
+    @apply active:scale-[0.98];
+  }
+
+  .jc-btn-pink {
+    @apply bg-jc-pink text-jc-black;
+    @apply border-[0.2em] border-jc-black;
+    @apply hover:bg-jc-pink/90 hover:scale-[1.02];
+    @apply focus-visible:ring-jc-pink/50;
+    @apply active:scale-[0.98];
+  }
+
+  .jc-btn-blue {
+    @apply bg-jc-blue text-jc-black;
+    @apply border-[0.2em] border-jc-black;
+    @apply hover:bg-jc-blue/90 hover:scale-[1.02];
+    @apply focus-visible:ring-jc-blue/50;
+    @apply active:scale-[0.98];
+  }
+
+  .jc-btn-purple {
+    @apply bg-jc-purple text-white;
+    @apply border-[0.2em] border-jc-black;
+    @apply hover:bg-jc-purple/90 hover:scale-[1.02];
+    @apply focus-visible:ring-jc-purple/50;
+    @apply active:scale-[0.98];
+  }
+
+  .jc-btn-black {
+    @apply bg-jc-black text-jc-white;
+    @apply border-[0.2em] border-jc-black;
+    @apply hover:bg-jc-black/90 hover:scale-[1.02];
+    @apply focus-visible:ring-jc-black/50;
+    @apply active:scale-[0.98];
+  }
+
+  .jc-btn-white {
+    @apply bg-jc-white text-jc-black;
+    @apply border-[0.2em] border-jc-black;
+    @apply hover:bg-jc-white/90 hover:scale-[1.02];
+    @apply focus-visible:ring-jc-white/50;
+    @apply active:scale-[0.98];
+  }
+
+  /* Outline variants */
+  .jc-btn-outline-yellow {
+    @apply bg-transparent text-jc-yellow;
+    @apply border-[0.2em] border-jc-yellow;
+    @apply hover:bg-jc-yellow hover:text-jc-black hover:scale-[1.02];
+    @apply focus-visible:ring-jc-yellow/50;
+    @apply active:scale-[0.98];
+  }
+
+  .jc-btn-outline-pink {
+    @apply bg-transparent text-jc-pink;
+    @apply border-[0.2em] border-jc-pink;
+    @apply hover:bg-jc-pink hover:text-jc-black hover:scale-[1.02];
+    @apply focus-visible:ring-jc-pink/50;
+    @apply active:scale-[0.98];
+  }
+
+  .jc-btn-outline-blue {
+    @apply bg-transparent text-jc-blue;
+    @apply border-[0.2em] border-jc-blue;
+    @apply hover:bg-jc-blue hover:text-jc-black hover:scale-[1.02];
+    @apply focus-visible:ring-jc-blue/50;
+    @apply active:scale-[0.98];
+  }
+
+  .jc-btn-outline-purple {
+    @apply bg-transparent text-jc-purple;
+    @apply border-[0.2em] border-jc-purple;
+    @apply hover:bg-jc-purple hover:text-white hover:scale-[1.02];
+    @apply focus-visible:ring-jc-purple/50;
+    @apply active:scale-[0.98];
+  }
+
+  .jc-btn-outline-black {
+    @apply bg-transparent text-jc-black;
+    @apply border-[0.2em] border-jc-black;
+    @apply hover:bg-jc-black hover:text-jc-white hover:scale-[1.02];
+    @apply focus-visible:ring-jc-black/50;
+    @apply active:scale-[0.98];
+  }
+
+  .jc-btn-outline-white {
+    @apply bg-transparent text-jc-white;
+    @apply border-[0.2em] border-jc-white;
+    @apply hover:bg-jc-white hover:text-jc-black hover:scale-[1.02];
+    @apply focus-visible:ring-jc-white/50;
+    @apply active:scale-[0.98];
+  }
+
+  /* Ghost variants (no border, subtle hover) */
+  .jc-btn-ghost {
+    @apply bg-transparent text-foreground;
+    @apply border-transparent;
+    @apply hover:bg-accent hover:text-accent-foreground;
+    @apply focus-visible:ring-ring/50;
+  }
+
+  /* Link variant */
+  .jc-btn-link {
+    @apply bg-transparent text-jc-yellow;
+    @apply border-transparent;
+    @apply underline-offset-4 hover:underline;
+    @apply focus-visible:ring-jc-yellow/50;
+  }
+
+  /* Size variants */
+  .jc-btn-sm {
+    @apply h-8 gap-1.5 px-3 text-sm has-[>svg]:px-2.5;
+  }
+
+  .jc-btn-default {
+    @apply h-12 px-8 py-3 text-base has-[>svg]:px-6;
+  }
+
+  .jc-btn-lg {
+    @apply h-14 px-10 py-4 text-lg has-[>svg]:px-8;
+  }
+
+  .jc-btn-icon {
+    @apply size-12;
+  }
+
+  /* ─── Play Button Base ─── */
+  .jc-play-btn {
+    @apply inline-flex items-center justify-center rounded-full;
+    @apply transition-all cursor-pointer;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+    @apply outline-none focus-visible:ring-4 focus-visible:ring-offset-2;
+    @apply hover:scale-[1.05] active:scale-[0.95];
+  }
+
+  /* Play Button Filled Variants */
+  .jc-play-btn-yellow {
+    @apply bg-jc-yellow text-jc-black;
+    @apply focus-visible:ring-jc-yellow/50;
+  }
+
+  .jc-play-btn-pink {
+    @apply bg-jc-pink text-jc-white;
+    @apply focus-visible:ring-jc-pink/50;
+  }
+
+  .jc-play-btn-blue {
+    @apply bg-jc-blue text-jc-black;
+    @apply focus-visible:ring-jc-blue/50;
+  }
+
+  .jc-play-btn-purple {
+    @apply bg-jc-purple text-jc-white;
+    @apply focus-visible:ring-jc-purple/50;
+  }
+
+  .jc-play-btn-black {
+    @apply bg-jc-black text-jc-white;
+    @apply focus-visible:ring-jc-black/50;
+  }
+
+  .jc-play-btn-white {
+    @apply bg-jc-white/20 text-jc-white border-2 border-jc-white/40;
+    @apply focus-visible:ring-jc-white/50;
+  }
+
+  /* Play Button Outline Variants */
+  .jc-play-btn-outline-yellow {
+    @apply bg-transparent text-jc-yellow border-2 border-jc-yellow;
+    @apply hover:bg-jc-yellow hover:text-jc-black;
+    @apply focus-visible:ring-jc-yellow/50;
+  }
+
+  .jc-play-btn-outline-pink {
+    @apply bg-transparent text-jc-pink border-2 border-jc-pink;
+    @apply hover:bg-jc-pink hover:text-jc-white;
+    @apply focus-visible:ring-jc-pink/50;
+  }
+
+  .jc-play-btn-outline-blue {
+    @apply bg-transparent text-jc-blue border-2 border-jc-blue;
+    @apply hover:bg-jc-blue hover:text-jc-black;
+    @apply focus-visible:ring-jc-blue/50;
+  }
+
+  .jc-play-btn-outline-purple {
+    @apply bg-transparent text-jc-purple border-2 border-jc-purple;
+    @apply hover:bg-jc-purple hover:text-jc-white;
+    @apply focus-visible:ring-jc-purple/50;
+  }
+
+  .jc-play-btn-outline-black {
+    @apply bg-transparent text-jc-black border-2 border-jc-black;
+    @apply hover:bg-jc-black hover:text-jc-white;
+    @apply focus-visible:ring-jc-black/50;
+  }
+
+  .jc-play-btn-outline-white {
+    @apply bg-transparent text-jc-white border-2 border-jc-white;
+    @apply hover:bg-jc-white hover:text-jc-black;
+    @apply focus-visible:ring-jc-white/50;
+  }
+
+  /* Play Button Sizes */
+  .jc-play-btn-sm {
+    @apply size-12;
+  }
+
+  .jc-play-btn-default {
+    @apply size-18;
+  }
+
+  .jc-play-btn-lg {
+    @apply size-26;
+  }
+
+  /* Title with bordered square fullstop */
+  @keyframes jc-color-change {
+
+    0%,
+    100% {
+      background-color: rgb(131, 56, 235);
+    }
+  }
+
+  @keyframes jc-fade-in {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .jc-title-dot::after {
+    /* Combined into one line for readability */
+    @apply inline-block opacity-0 border-[0.025em] border-solid border-black h-[16px] w-[16px] ml-[8px];
+
+    content: "";
+    transform: translateY(0.025em);
+    background-color: #ffd734;
+    animation: jc-fade-in 0.25s ease-in, jc-color-change 5s ease-in-out infinite;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
   }
 }

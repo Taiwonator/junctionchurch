@@ -22,12 +22,22 @@ export const components: Components<{
     disclaimer?: TinaMarkdownContent;
   };
   video: PageBlocksVideo;
+  ColorHighlight: {
+    children: TinaMarkdownContent;
+  };
 }> = {
+  ColorHighlight: (props) => {
+    return (
+      <span className="text-yellow-400">
+        <TinaMarkdown content={props.children} />
+      </span>
+    );
+  },
   code_block: (props) => {
     if (!props) {
       return <></>;
     }
-    
+
     if (props.lang === 'mermaid') {
       return <Mermaid value={props.value} />
     }

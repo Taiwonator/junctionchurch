@@ -1,10 +1,8 @@
-import Link from 'next/link'
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { iconSchema } from '@/tina/fields/icon';
-import { Button } from '@/components/ui/button'
+import { actionsFieldSchema } from '@/tina/fields/actions';
 import { PageBlocksCta } from '@/tina/__generated__/types';
-import { Icon } from '../icon';
+import { ActionRenderer } from '../ActionRenderer';
 import { Section } from '../layout/section';
 
 export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
@@ -15,22 +13,12 @@ export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
                 <p className="mt-4" data-tina-field={tinaField(data, 'description')}>{data.description}</p>
 
                 <div className="mt-12 flex flex-wrap justify-center gap-4">
-                    {data.actions && data.actions.map(action => (
-                        <div
-                            key={action!.label}
-                            data-tina-field={tinaField(action)}
-                            className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
-                            <Button
-                                asChild
-                                size="lg"
-                                variant={action!.type === 'link' ? 'ghost' : 'default'}
-                                className="rounded-xl px-5 text-base">
-                                <Link href={action!.link!}>
-                                    {action?.icon && (<Icon data={action?.icon} />)}
-                                    <span className="text-nowrap">{action!.label}</span>
-                                </Link>
-                            </Button>
-                        </div>
+                    {data.actions && data.actions.map((action: any) => (
+                        <ActionRenderer
+                            key={action.label}
+                            action={action}
+                            className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5"
+                        />
                     ))}
                 </div>
             </div>
@@ -49,13 +37,15 @@ export const ctaBlockSchema: Template = {
             description: "Get started with TinaCMS today and take your content management to the next level.",
             actions: [
                 {
+                    _template: 'linkAction',
                     label: 'Get Started',
-                    type: 'button',
+                    variant: 'yellow',
                     link: '/',
                 },
                 {
+                    _template: 'linkAction',
                     label: 'Book Demo',
-                    type: 'link',
+                    variant: 'ghost',
                     link: '/',
                 },
             ],
@@ -75,46 +65,6 @@ export const ctaBlockSchema: Template = {
                 component: "textarea",
             },
         },
-        {
-            label: 'Actions',
-            name: 'actions',
-            type: 'object',
-            list: true,
-            ui: {
-                defaultItem: {
-                    label: 'Action Label',
-                    type: 'button',
-                    icon: {
-                        name: "Tina",
-                        color: "white",
-                        style: "float",
-                    },
-                    link: '/',
-                },
-                itemProps: (item) => ({ label: item.label }),
-            },
-            fields: [
-                {
-                    label: 'Label',
-                    name: 'label',
-                    type: 'string',
-                },
-                {
-                    label: 'Type',
-                    name: 'type',
-                    type: 'string',
-                    options: [
-                        { label: 'Button', value: 'button' },
-                        { label: 'Link', value: 'link' },
-                    ],
-                },
-                iconSchema as any,
-                {
-                    label: 'Link',
-                    name: 'link',
-                    type: 'string',
-                },
-            ],
-        },
+        actionsFieldSchema as any,
     ],
 };
