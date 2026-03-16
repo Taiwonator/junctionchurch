@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksHeroSplitCompact } from '@/tina/__generated__/types';
+import { PageBlocksHero__Split_Compact } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const HeroSplitCompact = ({ data }: { data: PageBlocksHeroSplitCompact }) => {
+export const HeroSplitCompact = ({ data }: { data: PageBlocksHero__Split_Compact }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

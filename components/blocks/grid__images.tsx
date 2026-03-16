@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksImageGrid } from '@/tina/__generated__/types';
+import { PageBlocksGrid__Images } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const ImageGrid = ({ data }: { data: PageBlocksImageGrid }) => {
+export const ImageGrid = ({ data }: { data: PageBlocksGrid__Images }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

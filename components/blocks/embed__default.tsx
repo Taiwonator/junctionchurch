@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksEmbedBlock } from '@/tina/__generated__/types';
+import { PageBlocksEmbed__Default } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const EmbedBlock = ({ data }: { data: PageBlocksEmbedBlock }) => {
+export const EmbedBlock = ({ data }: { data: PageBlocksEmbed__Default }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

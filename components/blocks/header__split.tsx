@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksHeaderSplit } from '@/tina/__generated__/types';
+import { PageBlocksHeader__Split } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const HeaderSplit = ({ data }: { data: PageBlocksHeaderSplit }) => {
+export const HeaderSplit = ({ data }: { data: PageBlocksHeader__Split }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

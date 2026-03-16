@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksHeroLabel } from '@/tina/__generated__/types';
+import { PageBlocksHero__Label } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const HeroLabel = ({ data }: { data: PageBlocksHeroLabel }) => {
+export const HeroLabel = ({ data }: { data: PageBlocksHero__Label }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

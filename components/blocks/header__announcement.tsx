@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksHeaderAnnouncement } from '@/tina/__generated__/types';
+import { PageBlocksHeader__Announcement } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const HeaderAnnouncement = ({ data }: { data: PageBlocksHeaderAnnouncement }) => {
+export const HeaderAnnouncement = ({ data }: { data: PageBlocksHeader__Announcement }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

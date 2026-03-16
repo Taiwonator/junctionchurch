@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksHeaderMinimal } from '@/tina/__generated__/types';
+import { PageBlocksHeader__Minimal } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const HeaderMinimal = ({ data }: { data: PageBlocksHeaderMinimal }) => {
+export const HeaderMinimal = ({ data }: { data: PageBlocksHeader__Minimal }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

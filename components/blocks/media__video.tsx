@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksVideoBlock } from '@/tina/__generated__/types';
+import { PageBlocksMedia__Video } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const VideoBlock = ({ data }: { data: PageBlocksVideoBlock }) => {
+export const VideoBlock = ({ data }: { data: PageBlocksMedia__Video }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

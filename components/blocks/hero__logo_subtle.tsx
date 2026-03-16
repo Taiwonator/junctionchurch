@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksHeroSubtleLogo } from '@/tina/__generated__/types';
+import { PageBlocksHero__Logo_Subtle } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const HeroSubtleLogo = ({ data }: { data: PageBlocksHeroSubtleLogo }) => {
+export const HeroSubtleLogo = ({ data }: { data: PageBlocksHero__Logo_Subtle }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

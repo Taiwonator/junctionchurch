@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksHeaderStacked } from '@/tina/__generated__/types';
+import { PageBlocksHeader__Stacked } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const HeaderStacked = ({ data }: { data: PageBlocksHeaderStacked }) => {
+export const HeaderStacked = ({ data }: { data: PageBlocksHeader__Stacked }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

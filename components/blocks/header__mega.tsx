@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksHeaderMega } from '@/tina/__generated__/types';
+import { PageBlocksHeader__Mega } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const HeaderMega = ({ data }: { data: PageBlocksHeaderMega }) => {
+export const HeaderMega = ({ data }: { data: PageBlocksHeader__Mega }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">

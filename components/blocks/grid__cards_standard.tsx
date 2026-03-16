@@ -2,10 +2,10 @@
 import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksCardGridStandard } from '@/tina/__generated__/types';
+import { PageBlocksGrid__Cards_Standard } from '@/tina/__generated__/types';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 
-export const CardGridStandard = ({ data }: { data: PageBlocksCardGridStandard }) => {
+export const CardGridStandard = ({ data }: { data: PageBlocksGrid__Cards_Standard }) => {
     return (
         <Section background={data.background!}>
             <div className="text-center">
