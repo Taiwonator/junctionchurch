@@ -8,6 +8,9 @@
 // 4. Add the block to the `Blocks` component in `components/blocks/index.tsx`
 // 5. Add the block to the `components` object in `components/mdx-components.tsx`
 
+// import Bun
+import Bun from 'bun';
+
 const blockTemplates = [
     // Hero Blocks
     { name: 'hero__brand', label: 'Hero (Brand)' },
@@ -160,3 +163,5 @@ for (const block of blockTemplates) {
     const variableName = block.label.replace(/[^a-zA-Z0-9]/g, '');
     console.log(`import { ${variableName} } from "./${block.name}";`);
 }
+
+export { }
