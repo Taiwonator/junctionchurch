@@ -13,7 +13,7 @@ type TextNode = {
 	[key: string]: any;
 };
 
-const welcomeHome: TinaMarkdownContent = {
+const welcomeHome: any = {
 	"type": "root",
 	"children": [
 		{
