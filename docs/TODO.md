@@ -10,9 +10,9 @@
 - Done: Header Highlighting
 - Done: Typography for the whole project
 - Cancelled/Done: Padding and margin system
+- Cancelled: Grid system
 
 - SEO / H1, H2, H3 etc...
-- Grid system
 - Animations (loading, on hover, init etc)
 
 Starting with TinaMarkdownHeadlineTransformer...
