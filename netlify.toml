@@ -1,0 +1,11 @@
+[build]
+command = "pnpm run build"
+publish = ".next"
+
+[build.environment]
+# This increases the memory limit to 4GB, 
+# which usually resolves "Out of Memory" errors during heavy builds.
+NODE_OPTIONS = "--max-old-space-size=4096"
+
+# Ensure your TinaCMS and Next.js variables are explicitly set if not in the UI
+# NEXT_PUBLIC_TINA_CLIENT_ID = "your-id-here"
