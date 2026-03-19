@@ -31,3 +31,5 @@ yarn-error.log*
 # tools
 /tools/node_modules
 /tools/*
+# Local Netlify folder
+.netlify

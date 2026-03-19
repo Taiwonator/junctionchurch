@@ -16,3 +16,7 @@
 - Animations (loading, on hover, init etc)
 
 Starting with TinaMarkdownHeadlineTransformer...
+
+## Cloudflare
+Only allow Cloudflare IP addresses at your origin
+Update your origin server's firewall (usually via your web hosting provider or server console) to block all incoming traffic that doesn't originate from Cloudflare.
