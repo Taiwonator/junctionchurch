@@ -9,3 +9,11 @@ NODE_OPTIONS = "--max-old-space-size=4096"
 
 # Ensure your TinaCMS and Next.js variables are explicitly set if not in the UI
 # NEXT_PUBLIC_TINA_CLIENT_ID = "your-id-here"
+
+[[redirects]]
+from = '/api/*'
+to = '/.netlify/functions/api/:splat'
+status = 200
+
+[functions]
+node_bundler = 'esbuild'
