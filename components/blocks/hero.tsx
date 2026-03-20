@@ -11,6 +11,8 @@ import { AnimatedGroup } from '../motion-primitives/animated-group';
 import { TextEffect } from '../motion-primitives/text-effect';
 import HeroVideoDialog from '../ui/hero-video-dialog';
 import { Transition } from 'motion/react';
+import { cld } from '@/lib/utils';
+
 const transitionVariants = {
   container: {
     visible: {
@@ -119,7 +121,7 @@ const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
       <Image
         className='z-2 border-border/25 aspect-15/8 relative rounded-2xl border max-w-full h-auto'
         alt={image!.alt || ''}
-        src={image!.src!}
+        src={cld(image!.src!)}
         height={4000}
         width={3000}
       />

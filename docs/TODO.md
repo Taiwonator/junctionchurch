@@ -13,8 +13,8 @@
 - Cancelled: Grid system
 
 ## Observability
-- Plausible - https://github.com/plausible/community-edition/
-- Axiom
+- Done: Umami (Analytics)
+- Axiom (For now overkill. But will add when building out the quality app start boiletplate)
 
 ## Performance (SEO, Speed, Perceived performance)
 - SEO / H1, H2, H3 etc...
