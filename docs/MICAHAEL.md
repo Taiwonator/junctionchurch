@@ -6,6 +6,6 @@ Sorting out the button component and the button/actions would work.
 - logo handling ✅
 
 ## On a day
-- Deploy to somewhere economical
-- Handle external assets
-- Cloudflare it
+- Done: Deploy to somewhere economical
+- Dnoe: Handle external assets
+- Done: Cloudflare it

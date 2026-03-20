@@ -36,6 +36,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={cn(fontSans.variable, nunito.variable, lato.variable)}>
+      <head>
+        <script defer src="https://p01--umami-app--g5khbmbhkdqp.code.run/script.js" data-website-id="e51de1f4-bce5-46a6-99da-b8809d7c411b"></script>
+      </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         <VideoDialogProvider>
           {children}

@@ -12,11 +12,18 @@
 - Cancelled/Done: Padding and margin system
 - Cancelled: Grid system
 
+## Observability
+- Plausible - https://github.com/plausible/community-edition/
+- Axiom
+
+## Performance (SEO, Speed, Perceived performance)
 - SEO / H1, H2, H3 etc...
+- Asset optimisation
 - Animations (loading, on hover, init etc)
 
-Starting with TinaMarkdownHeadlineTransformer...
 
-## Cloudflare
+
+
+## TODO:Cloudflare
 Only allow Cloudflare IP addresses at your origin
 Update your origin server's firewall (usually via your web hosting provider or server console) to block all incoming traffic that doesn't originate from Cloudflare.
